@@ -41,8 +41,8 @@ public class Main {
                 "cosec", (Double x) -> 1 / Math.sin(x),
                 "ln", Math::log,
                 "log2", (Double x) -> Math.log(x) / Math.log(2),
-                "log3", (Double x) -> Math.log(x) / Math.log(2),
-                "log5", (Double x) -> Math.log(x) / Math.log(2),
+                "log3", (Double x) -> Math.log(x) / Math.log(3),
+                "log5", (Double x) -> Math.log(x) / Math.log(5),
                 "log10", Math::log10
         );
 

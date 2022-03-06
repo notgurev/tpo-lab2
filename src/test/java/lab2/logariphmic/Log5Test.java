@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
 @TestInstance(value=PER_CLASS)
-public class Log5Test {
+public class    Log5Test {
     private static final double DELTA = 0.05;
     private static final double ACCURACY = 0.001;
 
