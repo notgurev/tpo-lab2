@@ -12,6 +12,8 @@ public class SecCalculator extends Calculator {
 
     @Override
     public double calculate(double x) {
+        if (Math.abs(x % Math.PI - 0.5) < accuracy) return Double.POSITIVE_INFINITY;
+
         double sec = 1 / cos.calculate(x);
         return Double.isFinite(sec) ? sec : Double.POSITIVE_INFINITY;
     }

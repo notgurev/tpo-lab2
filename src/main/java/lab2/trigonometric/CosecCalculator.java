@@ -11,6 +11,8 @@ public class CosecCalculator extends Calculator {
     }
 
     public double calculate(double x) {
+        if (Math.abs(x % Math.PI) < accuracy) return Double.POSITIVE_INFINITY;
+
         double cosec = 1 / sin.calculate(x);
         return Double.isFinite(cosec) ? cosec : Double.POSITIVE_INFINITY;
     }
