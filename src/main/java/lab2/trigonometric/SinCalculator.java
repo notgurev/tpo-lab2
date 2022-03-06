@@ -22,7 +22,7 @@ public class SinCalculator extends Calculator {
     }
 
     private static int minusOnePow(int n) {
-        return 1 - (n % 2) * 2;  // todo интересно зачем это так реализовано
+        return (int) Math.pow(-1, n);
     }
 
     private static double prod(double x, int n) {
