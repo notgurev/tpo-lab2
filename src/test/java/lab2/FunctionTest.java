@@ -88,7 +88,7 @@ public class FunctionTest {
         CosCalculator cos = TrigonometryMocks.getCosMock();
         SecCalculator sec = TrigonometryMocks.getSecMock();
         CosecCalculator cosec = TrigonometryMocks.getCosecMock();
-        LnCalculator ln = LogMock.getLnMock(); // todo remove mock?
+        LnCalculator ln = LogMock.getLnMock();
         LogBaseCalculator log2 = LogMock.getLog2Mock();
         LogBaseCalculator log5 = LogMock.getLog5Mock();
         LogBaseCalculator log10 = new LogBaseCalculator(ACCURACY, 10, ln);
@@ -106,7 +106,7 @@ public class FunctionTest {
         CosCalculator cos = TrigonometryMocks.getCosMock();
         SecCalculator sec = TrigonometryMocks.getSecMock();
         CosecCalculator cosec = TrigonometryMocks.getCosecMock();
-        LnCalculator ln = LogMock.getLnMock(); // todo remove mock?
+        LnCalculator ln = LogMock.getLnMock();
         LogBaseCalculator log2 = LogMock.getLog2Mock();
         LogBaseCalculator log5 = LogMock.getLog5Mock();
         LogBaseCalculator log10 = LogMock.getLog10Mock();
