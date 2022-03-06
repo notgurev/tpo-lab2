@@ -17,7 +17,7 @@ public class SecTest {
     private SecCalculator sec;
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/cosec_test_data.csv")
+    @CsvFileSource(resources = "/sec_test_data.csv")
     public void tableValuesStubsTest(double expected, double num, double den) {
         sec = new SecCalculator(ACCURACY, TrigonometryMocks.getCosMock());
         double actual = sec.calculate(num * PI / den);
