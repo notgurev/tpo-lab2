@@ -28,7 +28,7 @@ public class LnCalculator extends Calculator {
                 current += ((Math.pow(-1, iter - 1) * Math.pow(x - 1, iter)) / iter);
                 iter++;
             } while (accuracy <= Math.abs(current - prev) && iter < MAX_ITERATIONS);
-            return (current - prev) / 2;
+//            return (current - prev) / 2; todo
         } else {
             do {
                 prev = current;
