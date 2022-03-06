@@ -19,14 +19,14 @@ public class CosecTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/cosec_test_data.csv")
     public void tableValuesStubsTest(double expected, double num, double den) {
-        cosec = new CosecCalculator(ACCURACY, TrigonomMock.getSinMock());
+        cosec = new CosecCalculator(ACCURACY, TrigonometryMocks.getSinMock());
         double actual = cosec.calculate(num * PI / den);
         assertEquals(expected, actual, DELTA);
     }
 
     @Test
     public void nanStubsTest() {
-        cosec = new CosecCalculator(ACCURACY, TrigonomMock.getSinMock());
+        cosec = new CosecCalculator(ACCURACY, TrigonometryMocks.getSinMock());
         double expected = Double.POSITIVE_INFINITY;
         double actual = cosec.calculate(Double.NaN);
         assertEquals(expected, actual, DELTA);
@@ -34,7 +34,7 @@ public class CosecTest {
 
     @Test
     public void positiveInfinityStubsTest() {
-        cosec = new CosecCalculator(ACCURACY, TrigonomMock.getSinMock());
+        cosec = new CosecCalculator(ACCURACY, TrigonometryMocks.getSinMock());
         double expected = Double.POSITIVE_INFINITY;
         double actual = cosec.calculate(Double.POSITIVE_INFINITY);
         assertEquals(expected, actual, DELTA);
@@ -42,10 +42,10 @@ public class CosecTest {
 
     @Test
     public void negativeInfinityStubsTest() {
-        cosec = new CosecCalculator(ACCURACY, TrigonomMock.getSinMock());
+        cosec = new CosecCalculator(ACCURACY, TrigonometryMocks.getSinMock());
         double expected = Double.POSITIVE_INFINITY;
         double actual = cosec.calculate(Double.NEGATIVE_INFINITY);
         assertEquals(expected, actual, DELTA);
     }
-
 }
+

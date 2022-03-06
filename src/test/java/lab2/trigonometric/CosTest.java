@@ -19,14 +19,14 @@ public class CosTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/cos_test_data.csv")
     public void tableValuesStubsTest(double expected, double num, double den) {
-        cos = new CosCalculator(ACCURACY, TrigonomMock.getSinMock());
+        cos = new CosCalculator(ACCURACY, TrigonometryMocks.getSinMock());
         double actual = cos.calculate(num * PI / den);
         assertEquals(expected, actual, DELTA);
     }
 
     @Test
     public void nanStubsTest() {
-        cos = new CosCalculator(ACCURACY, TrigonomMock.getSinMock());
+        cos = new CosCalculator(ACCURACY, TrigonometryMocks.getSinMock());
         double expected = Double.NaN;
         double actual = cos.calculate(Double.NaN);
         assertEquals(expected, actual, DELTA);
@@ -34,7 +34,7 @@ public class CosTest {
 
     @Test
     public void positiveInfinityStubsTest() {
-        cos = new CosCalculator(ACCURACY, TrigonomMock.getSinMock());
+        cos = new CosCalculator(ACCURACY, TrigonometryMocks.getSinMock());
         double expected = Double.NaN;
         double actual = cos.calculate(Double.POSITIVE_INFINITY);
         assertEquals(expected, actual, DELTA);
@@ -42,7 +42,7 @@ public class CosTest {
 
     @Test
     public void negativeInfinityStubsTest() {
-        cos = new CosCalculator(ACCURACY, TrigonomMock.getSinMock());
+        cos = new CosCalculator(ACCURACY, TrigonometryMocks.getSinMock());
         double expected = Double.NaN;
         double actual = cos.calculate(Double.NEGATIVE_INFINITY);
         assertEquals(expected, actual, DELTA);

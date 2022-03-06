@@ -7,7 +7,7 @@ import static java.lang.Math.PI;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class TrigonomMock {
+public class TrigonometryMocks {
     public static SinCalculator getSinMock() {
         SinCalculator sin = mock(SinCalculator.class);
 
@@ -73,38 +73,9 @@ public class TrigonomMock {
         return cos;
     }
 
-    public static TanCalculator getTanMock() {
-        TanCalculator tan = mock(TanCalculator.class);
-
-        when(tan.calculate(Mockito.eq(PI / 2))).thenReturn(Double.POSITIVE_INFINITY);
-        when(tan.calculate(Mockito.eq(- PI / 2))).thenReturn(Double.POSITIVE_INFINITY);
-        when(tan.calculate(Mockito.eq(PI))).thenReturn(0.0);
-        when(tan.calculate(Mockito.eq(2 * PI))).thenReturn(0.0);
-        when(tan.calculate(Mockito.eq(-PI))).thenReturn(0.0);
-
-        when(tan.calculate(Mockito.eq(1 * PI / 6))).thenReturn(0.5773502691896257);
-        when(tan.calculate(Mockito.eq(1 * PI / 4))).thenReturn(0.9999999999999999);
-        when(tan.calculate(Mockito.eq(1 * PI / 3))).thenReturn(1.7320508075688767);
-        when(tan.calculate(Mockito.eq(2 * PI / 3))).thenReturn(-1.7320508075688783);
-        when(tan.calculate(Mockito.eq(3 * PI / 4))).thenReturn(-1.0000000000000002);
-        when(tan.calculate(Mockito.eq(5 * PI / 6))).thenReturn(-0.5773502691896257);
-        when(tan.calculate(Mockito.eq(7 * PI / 6))).thenReturn(0.5773502691896254);
-        when(tan.calculate(Mockito.eq(5 * PI / 4))).thenReturn(0.9999999999999997);
-        when(tan.calculate(Mockito.eq(4 * PI / 3))).thenReturn(1.7320508075688754);
-        when(tan.calculate(Mockito.eq(5 * PI / 3))).thenReturn(-1.732050807568877);
-        when(tan.calculate(Mockito.eq(7 * PI / 4))).thenReturn(-1.0000000000000004);
-        when(tan.calculate(Mockito.eq(11 * PI / 6))).thenReturn(-0.5773502691896265);
-        when(tan.calculate(Mockito.eq(-1 * PI / 4))).thenReturn(-0.9999999999999999);
-        when(tan.calculate(Mockito.eq(-3 * PI / 4))).thenReturn(1.0000000000000002);
-        when(tan.calculate(Mockito.eq(-5 * PI / 4))).thenReturn(-0.9999999999999997);
-        when(tan.calculate(Mockito.eq(-7 * PI / 4))).thenReturn(1.0000000000000004);
-
-
-        when(tan.calculate(Double.POSITIVE_INFINITY)).thenReturn(NaN);
-        when(tan.calculate(Double.NEGATIVE_INFINITY)).thenReturn(NaN);
-        when(tan.calculate(NaN)).thenReturn(NaN);
-
-        return tan;
+    public static SecCalculator getSecMock() {
+        // todo
+        return null;
     }
 
     public static CosecCalculator getCosecMock() {
@@ -112,7 +83,7 @@ public class TrigonomMock {
 
         when(cosec.calculate(Mockito.eq(0.0))).thenReturn(Double.POSITIVE_INFINITY);
         when(cosec.calculate(Mockito.eq(-PI))).thenReturn(Double.POSITIVE_INFINITY);
-        when(cosec.calculate(Mockito.eq(- PI / 2))).thenReturn(-1.0);
+        when(cosec.calculate(Mockito.eq(-PI / 2))).thenReturn(-1.0);
         when(cosec.calculate(Mockito.eq(PI / 2))).thenReturn(1.0);
         when(cosec.calculate(Mockito.eq(PI))).thenReturn(Double.POSITIVE_INFINITY);
         when(cosec.calculate(Mockito.eq(2 * PI))).thenReturn(Double.POSITIVE_INFINITY);
