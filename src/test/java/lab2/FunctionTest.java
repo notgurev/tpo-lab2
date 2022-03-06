@@ -47,53 +47,69 @@ public class FunctionTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/function_test_data.csv")
-    public void sinStubTest(double expected, double num, double den) {
+    public void log2StubTest(double expected, double num, double den) {
         SinCalculator sin = TrigonometryMocks.getSinMock();
-        CosCalculator cos = new CosCalculator(ACCURACY, sin);
-        SecCalculator sec = new SecCalculator(ACCURACY, cos);
-        CosecCalculator cosec = new CosecCalculator(ACCURACY, sin);
-        LnCalculator ln = new LnCalculator(ACCURACY);
-        LogBaseCalculator log2 = new LogBaseCalculator(ACCURACY, 2, ln);
-        LogBaseCalculator log5 = new LogBaseCalculator(ACCURACY, 5, ln);
-        LogBaseCalculator log10 = new LogBaseCalculator(ACCURACY, 10, ln);
-        LogBaseCalculator log3 = new LogBaseCalculator(ACCURACY, 3, ln);
-
-        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
-        double actual = function.calculate(num * PI / den);
-        assertEquals(expected, actual, DELTA);
-    }
-
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/function_test_data.csv")
-    public void cosStubTest(double expected, double num, double den) {
-        SinCalculator sin = new SinCalculator(ACCURACY);
         CosCalculator cos = TrigonometryMocks.getCosMock();
-        SecCalculator sec = new SecCalculator(ACCURACY, cos);
-        CosecCalculator cosec = new CosecCalculator(ACCURACY, sin);
-        LnCalculator ln = new LnCalculator(ACCURACY);
-        LogBaseCalculator log2 = new LogBaseCalculator(ACCURACY, 2, ln);
-        LogBaseCalculator log5 = new LogBaseCalculator(ACCURACY, 5, ln);
-        LogBaseCalculator log10 = new LogBaseCalculator(ACCURACY, 10, ln);
-        LogBaseCalculator log3 = new LogBaseCalculator(ACCURACY, 3, ln);
-
-        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
-        double actual = function.calculate(num * PI / den);
-        assertEquals(expected, actual, DELTA);
-    }
-
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/function_test_data.csv")
-    public void secStubTest(double expected, double num, double den) {
-        SinCalculator sin = new SinCalculator(ACCURACY);
-        CosCalculator cos = new CosCalculator(ACCURACY, sin);
         SecCalculator sec = TrigonometryMocks.getSecMock();
-        CosecCalculator cosec = new CosecCalculator(ACCURACY, sin);
-        LnCalculator ln = new LnCalculator(ACCURACY);
+        CosecCalculator cosec = TrigonometryMocks.getCosecMock();
+        LnCalculator ln = LogMock.getLnMock();
         LogBaseCalculator log2 = new LogBaseCalculator(ACCURACY, 2, ln);
+        LogBaseCalculator log5 = LogMock.getLog5Mock();
+        LogBaseCalculator log10 = LogMock.getLog10Mock();
+        LogBaseCalculator log3 = LogMock.getLog3Mock();
+
+        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
+        double actual = function.calculate(num * PI / den);
+        assertEquals(expected, actual, DELTA);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/function_test_data.csv")
+    public void log5StubTest(double expected, double num, double den) {
+        SinCalculator sin = TrigonometryMocks.getSinMock();
+        CosCalculator cos = TrigonometryMocks.getCosMock();
+        SecCalculator sec = TrigonometryMocks.getSecMock();
+        CosecCalculator cosec = TrigonometryMocks.getCosecMock();
+        LnCalculator ln = LogMock.getLnMock();
+        LogBaseCalculator log2 = LogMock.getLog2Mock();
         LogBaseCalculator log5 = new LogBaseCalculator(ACCURACY, 5, ln);
+        LogBaseCalculator log10 = LogMock.getLog10Mock();
+        LogBaseCalculator log3 = LogMock.getLog3Mock();
+
+        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
+        double actual = function.calculate(num * PI / den);
+        assertEquals(expected, actual, DELTA);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/function_test_data.csv")
+    public void log10StubTest(double expected, double num, double den) {
+        SinCalculator sin = TrigonometryMocks.getSinMock();
+        CosCalculator cos = TrigonometryMocks.getCosMock();
+        SecCalculator sec = TrigonometryMocks.getSecMock();
+        CosecCalculator cosec = TrigonometryMocks.getCosecMock();
+        LnCalculator ln = LogMock.getLnMock(); // todo remove mock?
+        LogBaseCalculator log2 = LogMock.getLog2Mock();
+        LogBaseCalculator log5 = LogMock.getLog5Mock();
         LogBaseCalculator log10 = new LogBaseCalculator(ACCURACY, 10, ln);
+        LogBaseCalculator log3 = LogMock.getLog3Mock();
+
+        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
+        double actual = function.calculate(num * PI / den);
+        assertEquals(expected, actual, DELTA);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/function_test_data.csv")
+    public void log3StubTest(double expected, double num, double den) {
+        SinCalculator sin = TrigonometryMocks.getSinMock();
+        CosCalculator cos = TrigonometryMocks.getCosMock();
+        SecCalculator sec = TrigonometryMocks.getSecMock();
+        CosecCalculator cosec = TrigonometryMocks.getCosecMock();
+        LnCalculator ln = LogMock.getLnMock(); // todo remove mock?
+        LogBaseCalculator log2 = LogMock.getLog2Mock();
+        LogBaseCalculator log5 = LogMock.getLog5Mock();
+        LogBaseCalculator log10 = LogMock.getLog10Mock();
         LogBaseCalculator log3 = new LogBaseCalculator(ACCURACY, 3, ln);
 
         function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
@@ -101,13 +117,12 @@ public class FunctionTest {
         assertEquals(expected, actual, DELTA);
     }
 
-
     @ParameterizedTest
     @CsvFileSource(resources = "/function_test_data.csv")
-    public void cosecStubTest(double expected, double num, double den) {
-        SinCalculator sin = new SinCalculator(ACCURACY);
-        CosCalculator cos = new CosCalculator(ACCURACY, sin);
-        SecCalculator sec = new SecCalculator(ACCURACY, cos);
+    public void lnStubTest(double expected, double num, double den) {
+        SinCalculator sin = TrigonometryMocks.getSinMock();
+        CosCalculator cos = TrigonometryMocks.getCosMock();
+        SecCalculator sec = TrigonometryMocks.getSecMock();
         CosecCalculator cosec = TrigonometryMocks.getCosecMock();
         LnCalculator ln = new LnCalculator(ACCURACY);
         LogBaseCalculator log2 = new LogBaseCalculator(ACCURACY, 2, ln);
@@ -120,94 +135,97 @@ public class FunctionTest {
         assertEquals(expected, actual, DELTA);
     }
 
-
     @ParameterizedTest
     @CsvFileSource(resources = "/function_test_data.csv")
-    public void lnStubTest(double expected, double num, double den) {
-        SinCalculator sin = new SinCalculator(ACCURACY);
-        CosCalculator cos = new CosCalculator(ACCURACY, sin);
+    public void secStubTest(double expected, double num, double den) {
+        SinCalculator sin = TrigonometryMocks.getSinMock();
+        CosCalculator cos = TrigonometryMocks.getCosMock();
         SecCalculator sec = new SecCalculator(ACCURACY, cos);
-        CosecCalculator cosec = new CosecCalculator(ACCURACY, sin);
+        CosecCalculator cosec = TrigonometryMocks.getCosecMock();
         LnCalculator ln = LogMock.getLnMock();
-        LogBaseCalculator log2 = new LogBaseCalculator(ACCURACY, 2, ln);
-        LogBaseCalculator log5 = new LogBaseCalculator(ACCURACY, 5, ln);
-        LogBaseCalculator log10 = new LogBaseCalculator(ACCURACY, 10, ln);
-        LogBaseCalculator log3 = new LogBaseCalculator(ACCURACY, 3, ln);
-
-        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
-        double actual = function.calculate(num * PI / den);
-        assertEquals(expected, actual, DELTA);
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/function_test_data.csv")
-    public void log2StubTest(double expected, double num, double den) {
-        SinCalculator sin = new SinCalculator(ACCURACY);
-        CosCalculator cos = new CosCalculator(ACCURACY, sin);
-        SecCalculator sec = new SecCalculator(ACCURACY, cos);
-        CosecCalculator cosec = new CosecCalculator(ACCURACY, sin);
-        LnCalculator ln = new LnCalculator(ACCURACY); // todo add mock? wtf?
         LogBaseCalculator log2 = LogMock.getLog2Mock();
-        LogBaseCalculator log5 = new LogBaseCalculator(ACCURACY, 5, ln);
-        LogBaseCalculator log10 = new LogBaseCalculator(ACCURACY, 10, ln);
-        LogBaseCalculator log3 = new LogBaseCalculator(ACCURACY, 3, ln);
-
-        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
-        double actual = function.calculate(num * PI / den);
-        assertEquals(expected, actual, DELTA);
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/function_test_data.csv")
-    public void log5StubTest(double expected, double num, double den) {
-        SinCalculator sin = new SinCalculator(ACCURACY);
-        CosCalculator cos = new CosCalculator(ACCURACY, sin);
-        SecCalculator sec = new SecCalculator(ACCURACY, cos);
-        CosecCalculator cosec = new CosecCalculator(ACCURACY, sin);
-        LnCalculator ln = LogMock.getLnMock(); // todo remove mock?
-        LogBaseCalculator log2 = new LogBaseCalculator(ACCURACY, 2, ln);
         LogBaseCalculator log5 = LogMock.getLog5Mock();
-        LogBaseCalculator log10 = new LogBaseCalculator(ACCURACY, 10, ln);
-        LogBaseCalculator log3 = new LogBaseCalculator(ACCURACY, 3, ln);
-
-        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
-        double actual = function.calculate(num * PI / den);
-        assertEquals(expected, actual, DELTA);
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/function_test_data.csv")
-    public void log10StubTest(double expected, double num, double den) {
-        SinCalculator sin = new SinCalculator(ACCURACY);
-        CosCalculator cos = new CosCalculator(ACCURACY, sin);
-        SecCalculator sec = new SecCalculator(ACCURACY, cos);
-        CosecCalculator cosec = new CosecCalculator(ACCURACY, sin);
-        LnCalculator ln = LogMock.getLnMock(); // todo remove mock?
-        LogBaseCalculator log2 = new LogBaseCalculator(ACCURACY, 2, ln);
-        LogBaseCalculator log5 = new LogBaseCalculator(ACCURACY, 5, ln);
         LogBaseCalculator log10 = LogMock.getLog10Mock();
-        LogBaseCalculator log3 = new LogBaseCalculator(ACCURACY, 3, ln);
-
-        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
-        double actual = function.calculate(num * PI / den);
-        assertEquals(expected, actual, DELTA);
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/function_test_data.csv")
-    public void log3StubTest(double expected, double num, double den) {
-        SinCalculator sin = new SinCalculator(ACCURACY);
-        CosCalculator cos = new CosCalculator(ACCURACY, sin);
-        SecCalculator sec = new SecCalculator(ACCURACY, cos);
-        CosecCalculator cosec = new CosecCalculator(ACCURACY, sin);
-        LnCalculator ln = LogMock.getLnMock(); // todo remove mock?
-        LogBaseCalculator log2 = new LogBaseCalculator(ACCURACY, 2, ln);
-        LogBaseCalculator log5 = new LogBaseCalculator(ACCURACY, 5, ln);
-        LogBaseCalculator log10 = new LogBaseCalculator(ACCURACY, 10, ln);
         LogBaseCalculator log3 = LogMock.getLog3Mock();
 
         function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
         double actual = function.calculate(num * PI / den);
         assertEquals(expected, actual, DELTA);
     }
+
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/function_test_data.csv")
+    public void cosecStubTest(double expected, double num, double den) {
+        SinCalculator sin = TrigonometryMocks.getSinMock();
+        CosCalculator cos = TrigonometryMocks.getCosMock();
+        SecCalculator sec = TrigonometryMocks.getSecMock();
+        CosecCalculator cosec = new CosecCalculator(ACCURACY, sin);
+        LnCalculator ln = LogMock.getLnMock();
+        LogBaseCalculator log2 = LogMock.getLog2Mock();
+        LogBaseCalculator log5 = LogMock.getLog5Mock();
+        LogBaseCalculator log10 = LogMock.getLog10Mock();
+        LogBaseCalculator log3 = LogMock.getLog3Mock();
+
+        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
+        double actual = function.calculate(num * PI / den);
+        assertEquals(expected, actual, DELTA);
+    }
+
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/function_test_data.csv")
+    public void cosStubTest(double expected, double num, double den) {
+        SinCalculator sin = TrigonometryMocks.getSinMock();
+        CosCalculator cos = new CosCalculator(ACCURACY, sin);
+        SecCalculator sec = new SecCalculator(ACCURACY, cos);
+        CosecCalculator cosec = new CosecCalculator(ACCURACY, sin);
+        LnCalculator ln = LogMock.getLnMock();
+        LogBaseCalculator log2 = LogMock.getLog2Mock();
+        LogBaseCalculator log5 = LogMock.getLog5Mock();
+        LogBaseCalculator log10 = LogMock.getLog10Mock();
+        LogBaseCalculator log3 = LogMock.getLog3Mock();
+
+        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
+        double actual = function.calculate(num * PI / den);
+        assertEquals(expected, actual, DELTA);
+    }
+
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/function_test_data.csv")
+    public void sinStubTest(double expected, double num, double den) {
+        SinCalculator sin = new SinCalculator(ACCURACY);
+        CosCalculator cos = new CosCalculator(ACCURACY, sin);
+        SecCalculator sec = new SecCalculator(ACCURACY, cos);
+        CosecCalculator cosec = new CosecCalculator(ACCURACY, sin);
+        LnCalculator ln = LogMock.getLnMock();
+        LogBaseCalculator log2 = LogMock.getLog2Mock();
+        LogBaseCalculator log5 = LogMock.getLog5Mock();
+        LogBaseCalculator log10 = LogMock.getLog10Mock();
+        LogBaseCalculator log3 = LogMock.getLog3Mock();
+
+        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
+        double actual = function.calculate(num * PI / den);
+        assertEquals(expected, actual, DELTA);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/function_test_data.csv")
+    public void allStubTest(double expected, double num, double den) {
+        SinCalculator sin = new SinCalculator(ACCURACY);
+        CosCalculator cos = new CosCalculator(ACCURACY, sin);
+        SecCalculator sec = new SecCalculator(ACCURACY, cos);
+        CosecCalculator cosec = new CosecCalculator(ACCURACY, sin);
+        LnCalculator ln = new LnCalculator(ACCURACY);
+        LogBaseCalculator log2 = new LogBaseCalculator(ACCURACY, 2, ln);
+        LogBaseCalculator log5 = new LogBaseCalculator(ACCURACY, 5, ln);
+        LogBaseCalculator log10 = new LogBaseCalculator(ACCURACY, 10, ln);
+        LogBaseCalculator log3 = new LogBaseCalculator(ACCURACY, 3, ln);
+
+        function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
+        double actual = function.calculate(num * PI / den);
+        assertEquals(expected, actual, DELTA);
+    }
+
 }
