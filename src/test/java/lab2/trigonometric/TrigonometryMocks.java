@@ -97,8 +97,8 @@ public class TrigonometryMocks {
                 .mock(2 * PI / 3, -2.0)
                 .mock(-PI / 6, 1.1547005384)
                 .mock(2 * PI, 1.0)
-                .mock(-PI / 2, 16331239353195370.0)
-                .mock(PI / 2, 16331239353195370.0)
+                .mock(-PI / 2, NaN)
+                .mock(PI / 2, NaN)
                 .mock(-2 * PI, 1.0)
                 .mock(-3 * PI / 4, -1.4142135624);
 
