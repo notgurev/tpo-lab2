@@ -11,8 +11,8 @@ public class CsvLogger {
     private String filePath = "src/test/resources/";
 
     private final char CSV_SEPARATOR = ',';
-    private final int[] numerators = new int[] {1, 1, 1, 2, 3, 5, 7, 5, 4, 5, 7, 11, 1, 2, 1, -1, -1, -3, -1, -5, -7};
-    private final int[] denominators = new int[] {6, 4, 3, 3, 4, 6, 6, 4, 3, 3, 4, 6, 1, 1, 2, 2, 4, 4, 1, 4, 4};
+    private final int[] numerators = new int[] {0, -4, 1, -1, 1, -1, -1, 2, -1, 1, 2, -2, -3};
+    private final int[] denominators = new int[] {1, 3, 1, 4, 4, 1, 6, 3, 2, 2, 1, 1, 4};
 
     public CsvLogger(String fileName) {
         this.filePath = filePath + fileName;
