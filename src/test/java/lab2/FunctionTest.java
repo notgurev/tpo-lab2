@@ -23,7 +23,12 @@ public class FunctionTest {
     @AfterAll
     public void logInCSV() {
         CsvLogger csvLogger = new CsvLogger("csv_output/function.csv");
-        csvLogger.log(function);
+        csvLogger.logToCSV(function::calculate, -5, 5, 0.01);
+
+        SinCalculator sin = new SinCalculator(ACCURACY);
+        CosCalculator cos = new CosCalculator(ACCURACY, sin);
+        SecCalculator sec = new SecCalculator(ACCURACY, cos);
+        csvLogger.logToCSV(sec::calculate, -5, 5, 0.01);
     }
 
     @ParameterizedTest
