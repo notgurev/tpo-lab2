@@ -4,10 +4,12 @@ import lab2.logariphmic.LnCalculator;
 import lab2.logariphmic.LogBaseCalculator;
 import lab2.logariphmic.LogMock;
 import lab2.trigonometric.*;
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+
+import java.util.List;
 
 import static java.lang.Math.PI;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,15 +22,22 @@ public class FunctionTest {
 
     private Function function;
 
-    @AfterAll
+    @BeforeAll
     public void logInCSV() {
-        CsvLogger csvLogger = new CsvLogger("csv_output/function.csv");
-        csvLogger.logToCSV(function::calculate, -5, 5, 0.01);
+        var sin = new SinCalculator(ACCURACY);
+        var cos = new CosCalculator(ACCURACY, sin);
+        var sec = new SecCalculator(ACCURACY, cos);
+        var cosec = new CosecCalculator(ACCURACY, sin);
+        var ln = new LnCalculator(ACCURACY);
+        var log2 = new LogBaseCalculator(ACCURACY, 2, ln);
+        var log5 = new LogBaseCalculator(ACCURACY, 5, ln);
+        var log10 = new LogBaseCalculator(ACCURACY, 10, ln);
+        var log3 = new LogBaseCalculator(ACCURACY, 3, ln);
+        var function = new Function(ACCURACY, sin, cos, sec, cosec, ln, log2, log5, log10, log3);
 
-        SinCalculator sin = new SinCalculator(ACCURACY);
-        CosCalculator cos = new CosCalculator(ACCURACY, sin);
-        SecCalculator sec = new SecCalculator(ACCURACY, cos);
-        csvLogger.logToCSV(sec::calculate, -5, 5, 0.01);
+        CsvLogger csvLogger = new CsvLogger("/csv_output/");
+        List<Calculator> calculators = List.of(sin, cos, sec, cosec, ln, log2, log5, log10, log3, function);
+        calculators.forEach(calculator -> csvLogger.logToCSV(calculator, -5, 5, 0.01));
     }
 
     @ParameterizedTest
